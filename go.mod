@@ -1,4 +1,4 @@
-module github.com/amine7536/backend-1
+module github.com/doublurehq/demo-backend-1
 
 go 1.23
 
