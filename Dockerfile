@@ -7,8 +7,9 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o /backend-1 .
 
 FROM alpine:3.20
+ARG TARGETARCH
 RUN apk add --no-cache curl \
-    && curl -fsSL https://github.com/golang-migrate/migrate/releases/download/v4.18.1/migrate.linux-amd64.tar.gz \
+    && curl -fsSL "https://github.com/golang-migrate/migrate/releases/download/v4.18.1/migrate.linux-${TARGETARCH}.tar.gz" \
        | tar xz -C /usr/local/bin \
     && apk del curl
 COPY --from=builder /backend-1 /backend-1
